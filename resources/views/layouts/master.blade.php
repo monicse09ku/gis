@@ -21,10 +21,8 @@
 
     <div class="col-md-12">
         @include('layouts.partials.sidebar')  
-        
-        <div class="col-md-9">
-            @yield('content')
-        </div>
+
+        @yield('content')
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -34,6 +32,8 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXjN6Rex65xYL5gwWwCBlDX6B3JGIuTDM&callback=initMap">
     </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript" src="{{ asset('/js/scripts.js') }}"></script>
 
