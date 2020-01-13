@@ -7,6 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav">
             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+            <a href="{{ url('/about') }}" class="nav-item nav-link active">About</a>
+            <a href="{{ url('/contact') }}" class="nav-item nav-link active">Contact</a>
             <!-- <a href="#" class="nav-item nav-link">Profile</a>
             <a href="#" class="nav-item nav-link">Messages</a>
             <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->

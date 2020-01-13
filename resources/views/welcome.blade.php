@@ -4,12 +4,13 @@
 
 
 @section('content')
+@include('layouts.partials.sidebar')
 <div class="col-md-9" style="float: left;">
 	<nav class="navbar navbar-expand-md">
-	    <a href="#" class="navbar-brand btn-secondary tab-menu btn" onclick="showCTDCGlobalDataset()">CTDC GLOBAL DATASET</a>
-	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showCTDCGlobalCorridor()">CTDC GLOBAL CORRIDOR</a>
-	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">CTDC IOM DATASET</a>
-	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">US STATES</a>
+	    <a href="#" class="navbar-brand btn-secondary tab-menu btn" onclick="showCTDCGlobalDataset()">Arrivals</a>
+	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showCTDCGlobalCorridor()">Incident</a>
+	    <!-- <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">CTDC IOM DATASET</a>
+	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">US STATES</a> -->
 	    
 	    </div>
 	</nav>
