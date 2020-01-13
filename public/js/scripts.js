@@ -1,4 +1,4 @@
-function initMap() {
+/*function initMap() {
 	// The location of Uluru
 	var uluru = {lat: -25.344, lng: 131.036};
 	// The map, centered at Uluru
@@ -6,23 +6,23 @@ function initMap() {
 	  document.getElementById('map'), {zoom: 4, center: uluru});
 	// The marker, positioned at Uluru
 	var marker = new google.maps.Marker({position: uluru, map: map});
-}
+}*/
 
 function showCTDCGlobalDataset() {
 	$('#regions_div_container').hide();
-	$('#map').show();
+	$('#mapid').show();
 	$('#ctdc-corridor').hide();
 	$('#ctdc-dataset-layers').show();
 
-	var map = L.map('map', {
-    center: [51.505, -0.09],
-    zoom: 13
-});
+	var map = L.map('mapid', {
+	    center: [51.505, -0.09],
+	    zoom: 13
+	});
 }
 
 function showCTDCGlobalCorridor() {
 	//$('.loader').hide();
-	$('#map').hide();
+	$('#mapid').hide();
 	$('#regions_div_container').show();
 	$('#ctdc-corridor').show();
 	$('#ctdc-dataset-layers').hide();
@@ -56,7 +56,35 @@ chart.draw(data, options);
 
 $( document ).ready(function() {
     $('#regions_div_container').hide();
-	$('#map').show();
+	initMap();
 	$('#ctdc-corridor').hide();
 	$('#ctdc-dataset-layers').show();
 });
+
+
+function initMap(){
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11'
+	}).addTo(mymap);
+
+	//L.marker([51.5, -0.09]).addTo(mymap);
+
+	L.circle([51.508, -0.11], {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5,
+		radius: 500
+	}).addTo(mymap);
+
+	/*L.polygon([
+		[51.509, -0.08],
+		[51.503, -0.06],
+		[51.51, -0.047]
+	]).addTo(mymap);*/
+}

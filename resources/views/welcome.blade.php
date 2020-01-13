@@ -12,12 +12,12 @@
 	    <!-- <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">CTDC IOM DATASET</a>
 	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large">US STATES</a> -->
 	    
-	    </div>
+	    
 	</nav>
 
 	<!-- <div class="loader"></div> -->
 
-	<div id="map"></div>
+	<div id="mapid"></div>
 
 	<div id="regions_div_container">
 		<div id="regions_div"></div>

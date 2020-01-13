@@ -1,24 +1,14 @@
 h4{
     font-size: 1rem;
 }
-#map {
+#mapid {
     height: 80vh;  /* The height is 400 pixels */
-    width: 75%;  /* The width is the width of the web page */
+    width: 100%;  /* The width is the width of the web page */
 }
 #regions_div_container{
 	height: 80vh;  /* The height is 400 pixels */
-    width: 75%;
+    width: 100%;
     float: left;
-}
-#regions_div svg{
-    height: 100%;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
-}
-#regions_div svg g{
-    height: 100%;  /* The height is 400 pixels */
-}
-#regions_div svg g rect{
-    height: 100%;  /* The height is 400 pixels */
 }
 .tab-menu{
     font-size: .9rem;
