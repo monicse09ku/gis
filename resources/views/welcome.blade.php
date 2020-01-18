@@ -12,6 +12,8 @@
 	    
 	</nav>
 
+	<div class="loader"></div>
+	
 	<div id="map_container">
 		<div id="mapid"></div>
 	</div>

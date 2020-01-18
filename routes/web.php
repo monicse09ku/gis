@@ -22,3 +22,8 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/get-incidents', function () {
+    return view('contact');
+});
+Route::get('get-incidents', 'IncidentController@getIncidents')->name('getIncidents');
