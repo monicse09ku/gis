@@ -4,6 +4,9 @@
 
 
 @section('content')
+
+@include('modals.incident-details')
+
 @include('layouts.partials.sidebar')
 <div class="col-md-9" style="float: left;">
 	<nav class="navbar navbar-expand-md">
