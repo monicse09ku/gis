@@ -58,12 +58,22 @@ function generateIncidentsMap(incidents) {
 
 
 // Here's where you iterate over the array of coordinate objects.
-incidents.forEach(function(coord) {
+/*incidents.forEach(function(coord) {
   var circle = L.circle([coord.latitude, coord.longitude], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: getRadius(coord.total_dead_and_missing),
+    data: coord
+  }).addTo(myMap).on("click", circleClick);
+});
+*/
+
+
+incidents.forEach(function(coord) {
+  var circle = L.marker([coord.latitude, coord.longitude], {
+    color: 'red',
+    icon: getIcon(coord.total_dead_and_missing),
     data: coord
   }).addTo(myMap).on("click", circleClick);
 });
@@ -90,7 +100,7 @@ console.log(clickedCircle.options)
   $('#incidentDetailModal').modal('show');
 }
 
-function getRadius(total_dead_and_missing) {
+/*function getRadius(total_dead_and_missing) {
 	if(total_dead_and_missing == 0){
 		return 0;
 	}else if(total_dead_and_missing > 0 && total_dead_and_missing < 50){
@@ -106,4 +116,45 @@ function getRadius(total_dead_and_missing) {
 	}else{
 		return 110000;
 	}
+}*/
+
+function getIcon(total_dead_and_missing) {
+	var icon_size = 0;
+	var image = '1.png';
+
+	if(total_dead_and_missing == 0){
+		icon_size = [0, 0];
+		image = '1.png';
+	}else if(total_dead_and_missing > 0 && total_dead_and_missing < 100){
+		icon_size = [40, 40];
+		image = '2.png';
+	}else if(total_dead_and_missing >= 100 && total_dead_and_missing < 200){
+		icon_size = [45, 45];
+		image = '3.png';
+	}else if(total_dead_and_missing >= 200 && total_dead_and_missing < 300){
+		icon_size = [50, 50];
+		image = '4.png';
+	}else if(total_dead_and_missing >= 300 && total_dead_and_missing < 400){
+		icon_size = [55, 55];
+		image = '5.png';
+	}else if(total_dead_and_missing >= 400 && total_dead_and_missing < 500){
+		icon_size = [60, 60];
+		image = '6.png';
+	}else{
+		icon_size = [80, 80];
+		image = '7.png';
+	}
+
+	var greenIcon = L.icon({
+	    iconUrl: base_url + '/images/' + image,
+	    //shadowUrl: 'leaf-shadow.png',
+
+	    iconSize:    icon_size , // size of the icon
+	    //shadowSize:   [50, 64], // size of the shadow
+	    //iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+	    //shadowAnchor: [4, 62],  // the same for the shadow
+	    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});
+
+	return greenIcon;
 }
