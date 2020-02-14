@@ -65,4 +65,20 @@ class ArrivalController extends Controller
 
         return json_encode(['status' => 'Success', 'arrivals' => $arrivals]);
     }
+
+    public function refreshArrival(Request $request)
+    {
+        if(!empty($request->country)){
+            $arrivals = Arrival::where([
+                ['country', '=', $request->country],
+                ['year', '=', $request->year]
+            ])->get();
+        }else{
+            $arrivals = Arrival::where([
+                ['year', '=', $request->year]
+            ])->get();
+        }
+
+        return json_encode(['status' => 'Success', 'arrivals' => $arrivals]);
+    }
 }

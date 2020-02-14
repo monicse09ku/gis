@@ -17,4 +17,20 @@ class IncidentController extends Controller
     	$incidents = Incident::where('year', $year)->get();
     	return json_encode(['status' => 'Success', 'incidents' => $incidents]);
     }
+
+    public function refreshIncidents(Request $request)
+    {
+        if (!empty($request->month)) {
+            $incidents = Incident::where([
+                ['month', '=', $request->month],
+                ['year', '=', $request->year]
+            ])->get();
+        }else{
+            $incidents = Incident::where([
+                ['year', '=', $request->year]
+            ])->get();
+        }
+        
+        return json_encode(['status' => 'Success', 'incidents' => $incidents]);
+    }
 }
