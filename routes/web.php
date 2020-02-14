@@ -23,7 +23,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/get-incidents', function () {
-    return view('contact');
-});
-Route::get('get-incidents', 'IncidentController@getIncidents')->name('getIncidents');
+Route::post('get-incidents', 'IncidentController@getIncidents')->name('getIncidents');
+Route::post('get-arrivals', 'ArrivalController@getArrivals')->name('getArrivals');
+Route::post('get-single-arrival', 'ArrivalController@getSingleArrival')->name('getArrivals');

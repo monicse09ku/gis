@@ -12,6 +12,7 @@
 	<nav class="navbar navbar-expand-md">
 	    <a href="#" class="navbar-brand btn-secondary tab-menu btn" onclick="showArrivals()">Arrivals</a>
 	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showIncidents()">Incident</a>
+	    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showGraphs()">Graphs</a>
 	    
 	</nav>
 

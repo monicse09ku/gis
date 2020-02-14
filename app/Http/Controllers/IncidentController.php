@@ -7,9 +7,14 @@ use App\Models\Incident;
 
 class IncidentController extends Controller
 {
-    public function getIncidents()
+    public function getIncidents(Request $request)
     {
-    	$incidents = Incident::all();
+    	if (!empty($request->year)) {
+    		$year = $request->year;
+    	}else{
+    		$year = 2018;
+    	}
+    	$incidents = Incident::where('year', $year)->get();
     	return json_encode(['status' => 'Success', 'incidents' => $incidents]);
     }
 }
