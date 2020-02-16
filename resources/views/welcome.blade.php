@@ -98,9 +98,9 @@
 		<div id="mapid"></div>
 	</div>
 
-	<div id="graph_container" style="float: left;">
-		<div id="incidents-graph-container" style="float: left;width: 100%"></div>
-		<div id="regional-graph-container" style="float: left;width: 100%"></div>
+	<div id="graph_container" style="float: left;width: 100%;">
+		<div id="incidents-graph-container" style="float: left;width: 70%"></div>
+		<div id="regional-graph-container" style="float: left;width: 30%"></div>
 	</div>
 	
 </div>

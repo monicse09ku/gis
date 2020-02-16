@@ -438,15 +438,15 @@ function showGraphs(argument) {
 	$('#graph_container').show();
 	
 	$('.arrivals-layers').hide();
-	$('.incidents-layers').show();
+	$('.incidents-layers').hide();
 
-	$('.year').show();
+	$('.year').hide();
 	$('.country').hide();
-	$('.month').show();
+	$('.month').hide();
 
 	$('.arrivals-refresh').hide();
 	$('.incidents-refresh').hide();
-	$('.graph-refresh').show();
+	$('.graph-refresh').hide();
 
 	$('.year').val(2018);
 	$('.country').val();
@@ -479,8 +479,7 @@ function showIncidentGraph(incidents){
 	Highcharts.chart('incidents-graph-container', {
 	    chart: {
 	        type: 'column',
-	        width: 800,
-	        height: 900
+	        height: 1000
 	    },
 	    title: {
 	        text: 'Number Of Incidents'
