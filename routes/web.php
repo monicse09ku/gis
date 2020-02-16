@@ -25,6 +25,8 @@ Route::get('/contact', function () {
 
 Route::post('get-incidents', 'IncidentController@getIncidents')->name('getIncidents');
 Route::post('refresh-incidents', 'IncidentController@refreshIncidents')->name('refreshIncidents');
+Route::post('incidents-graph-data', 'IncidentController@incidentsGraphData')->name('incidentsGraphData');
 Route::post('get-arrivals', 'ArrivalController@getArrivals')->name('getArrivals');
 Route::post('get-single-arrival', 'ArrivalController@getSingleArrival')->name('getArrivals');
 Route::post('refresh-arrival', 'ArrivalController@refreshArrival')->name('refreshArrival');
+

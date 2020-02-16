@@ -111,4 +111,13 @@
 			<div class="col-md-10" style="float: left;">>15000</div>
 		</div>
 	</div>
+
+	<div class="details-layers">
+		<p style="font-weight: bold;">Destination Country</p>
+		<h3 class="destination-country"></h3>
+		<div class="destination-details" style="margin-top:5px">
+			
+		</div>
+		
+	</div>
 </div>

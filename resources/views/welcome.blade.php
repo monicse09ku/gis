@@ -97,6 +97,11 @@
 	<div id="map_container">
 		<div id="mapid"></div>
 	</div>
+
+	<div id="graph_container" style="float: left;">
+		<div id="incidents-graph-container" style="float: left;width: 100%"></div>
+		<div id="regional-graph-container" style="float: left;width: 100%"></div>
+	</div>
 	
 </div>
 @endsection

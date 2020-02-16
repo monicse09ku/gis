@@ -2,8 +2,12 @@ var base_url = '';
 $( document ).ready(function() {
 	$('.loader').show();
 
+	$('#map_container').show();
+	$('#graph_container').hide();
+
 	$('.arrivals-layers').show();
 	$('.incidents-layers').hide();
+	$('.details-layers').hide();
 
 	$('.year').show();
 	$('.country').show();
@@ -30,8 +34,12 @@ $( document ).ready(function() {
 function showArrivals() {
 	$('.loader').show();
 
+	$('#map_container').show();
+	$('#graph_container').hide();
+
 	$('.arrivals-layers').show();
 	$('.incidents-layers').hide();
+	$('.details-layers').hide();
 
 	$('.year').show();
 	$('.country').show();
@@ -179,7 +187,7 @@ function refreshArrivals() {
 }
 
 function generateSingleArrivalsMap(arrivals) {
-
+	
 	document.getElementById('map_container').innerHTML = "<div id='mapid'></div>";
 
 	var myMap = L.map('mapid').setView([47.00, 9.00], 4);
@@ -228,6 +236,8 @@ function generateSingleArrivalsMap(arrivals) {
 	    }).addTo(myMap);
 	});
 
+	showDetails(arrivals);
+	
 	$('.loader').hide();
 // Set the view to where some of the circles are drawn.
 //myMap.panTo([53.00, 9.00]);
@@ -258,14 +268,33 @@ function getSingleArrivalMarker(arrival, to_or_from_country) {
 	return greenIcon;
 }
 
+function showDetails(arrivals) {
+
+	var destination_details = '';
+	if(arrivals[0].country === arrivals[1].country){
+
+		$('.arrivals-layers').hide();
+		$('.details-layers').show();
+
+		$('.destination-country').html(arrivals[0].country);
+		$.each( arrivals, function( key, value ) {
+			destination_details += '<p>' + value.country_from + ' --- ' + value.percentage +'</p>'
+		})
+		$('.destination-details').html(destination_details);
+	}
+}
 
 
 
 function showIncidents() {
 	$('.loader').show();
+
+	$('#map_container').show();
+	$('#graph_container').hide();
 	
 	$('.arrivals-layers').hide();
 	$('.incidents-layers').show();
+	$('.details-layers').hide();
 
 	$('.year').show();
 	$('.country').hide();
@@ -277,7 +306,7 @@ function showIncidents() {
 
 	$('.year').val(2018);
 	$('.country').val();
-	$('.month').val();
+	$('.month').val('');
 
 	document.getElementById('map_container').innerHTML = "<div id='mapid'></div>";
 
@@ -404,6 +433,9 @@ function getIcon(total_dead_and_missing) {
 
 function showGraphs(argument) {
 	$('.loader').show();
+
+	$('#map_container').hide();
+	$('#graph_container').show();
 	
 	$('.arrivals-layers').hide();
 	$('.incidents-layers').show();
@@ -420,5 +452,96 @@ function showGraphs(argument) {
 	$('.country').val();
 	$('.month').val();
 
+
+	var url = base_url + '/incidents-graph-data';
+
+	$.ajax({
+       	type:'POST',
+       	url:url,
+       	data:{
+       		month:$('.month').val(),
+       		year:$('.year').val()
+       	},
+       	success:function(data){
+          	var incidents = JSON.parse(data);
+          	
+			showIncidentGraph(incidents.incidents);
+			showRegionalIncidentGraph(incidents.regional_data);
+       	}
+    })
+
+
+
 	$('.loader').hide();
+}
+
+function showIncidentGraph(incidents){
+	Highcharts.chart('incidents-graph-container', {
+	    chart: {
+	        type: 'column',
+	        width: 800,
+	        height: 900
+	    },
+	    title: {
+	        text: 'Number Of Incidents'
+	    },
+	    xAxis: {
+	        categories: ['2014', '2015', '2016', '2017', '2018']
+	    },
+	    yAxis: {
+	        min: 0,
+	        title: {
+	            text: 'Total Number of Incidents'
+	        }
+	    },
+	    tooltip: {
+	        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+	        shared: true
+	    },
+	    plotOptions: {
+	        column: {
+	            stacking: 'percent'
+	        }
+	    },
+	    series: incidents
+	});
+
+}
+
+function showRegionalIncidentGraph(regional_data) {
+	console.log(regional_data);
+	Highcharts.chart('regional-graph-container', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: 'Regional Incidents'
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.y} : {point.percentage:.1f}%</b>'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.y} : {point.percentage:.1f} %'
+	            }
+	        }
+	    },
+	    series: [{
+	        name: 'Brands',
+	        colorByPoint: true,
+	        data: regional_data
+	    }]
+	});
 }
