@@ -1,3 +1,6 @@
+body{
+  font-family: 'Bree Serif', serif;
+}
 h4{
     font-size: 1rem;
 }
@@ -42,4 +45,39 @@ h4{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.bg-color{
+  background-color: #52A5A0;
+}
+
+.destination-country{
+  text-transform: uppercase;
+  color: #52A5A0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.total-migrants{
+  text-transform: uppercase;
+  color: #52A5A0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.destination-label{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 30px !important;
+}
+.total-migrants-label{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 30px !important;
+}
+
+.origin-label{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
 }

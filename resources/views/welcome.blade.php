@@ -10,9 +10,9 @@
 <div class="col-md-9" style="float: left;">
 	<div class="col-md-6" style="float: left;">
 		<nav class="navbar navbar-expand-md">
-		    <a href="#" class="navbar-brand btn-secondary tab-menu btn" onclick="showArrivals()">Arrivals</a>
-		    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showIncidents()">Incident</a>
-		    <a href="#" class="navbar-brand btn-secondary tab-menu btn btn-large" onclick="showGraphs()">Graphs</a>
+		    <a href="#" class="navbar-brand btn-secondary tab-menu btn bg-color" onclick="showArrivals()">Arrival</a>
+		    <a href="#" class="navbar-brand btn-secondary tab-menu btn bg-color" onclick="showIncidents()">Incident</a>
+		    <a href="#" class="navbar-brand btn-secondary tab-menu btn bg-color" onclick="showGraphs()">Dashboard</a>
 		    <a href="#" class="navbar-brand tab-menu" style="padding: 0;">
 		    	<select class="form-control year" style="width: 150px">
 					<option value="">Select Year</option>
@@ -49,7 +49,7 @@
 		    <a href="#" class="navbar-brand tab-menu" style="padding: 0;">
 		    	<select class="form-control country" style="width: 150px">
 					<option value="">Select Country</option>
-					<option value="Australia">Australia</option>
+					<option value="Austria">Austria</option>
 					<option value="Belgium">Belgium</option>
 					<option value="Bulgaria">Bulgaria</option>
 					<option value="Croatia">Croatia</option>

@@ -149,7 +149,6 @@ function getArrivalMarker(total_arivals) {
 function arrivalsCircleClick(e) {
 	$('.loader').show();
     var clickedCircle = e.target;
-	console.log(clickedCircle.options);
 	var url = base_url + '/get-single-arrival';
 
 	$.ajax({
@@ -162,15 +161,21 @@ function arrivalsCircleClick(e) {
        	},
        	success:function(data){
           	var single_arrivals = JSON.parse(data);
-			generateSingleArrivalsMap(single_arrivals.arrivals);
+			generateSingleArrivalsMap(single_arrivals.arrivals, true);
        	}
     });
 }
 
 function refreshArrivals() {
 	$('.loader').show();
-
+	var show_lines = true;
 	var url = base_url + '/refresh-arrival';
+	if($('.country').val() === ''){
+		show_lines = false;
+		$('.arrivals-layers').show();
+		$('.incidents-layers').hide();
+		$('.details-layers').hide();
+	}
 
 	$.ajax({
        	type:'POST',
@@ -181,12 +186,12 @@ function refreshArrivals() {
        	},
        	success:function(data){
           	var single_arrivals = JSON.parse(data);
-			generateSingleArrivalsMap(single_arrivals.arrivals);
+			generateSingleArrivalsMap(single_arrivals.arrivals, show_lines);
        	}
     });
 }
 
-function generateSingleArrivalsMap(arrivals) {
+function generateSingleArrivalsMap(arrivals, show_lines = true) {
 	
 	document.getElementById('map_container').innerHTML = "<div id='mapid'></div>";
 
@@ -200,43 +205,48 @@ function generateSingleArrivalsMap(arrivals) {
 	}).addTo(myMap);
 
 	$.each( arrivals, function( key, value ) {
-	  	var circle1 = L.marker([value.latitude, value.longitude], {
+	  	var circle1 = L.marker([value.country_to.lat, value.country_to.lon], {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_to'),
 	    	data: value
 	  	}).addTo(myMap);
 
-	  	var circle2 = L.marker([value.country_from_latitude, value.country_from_longitude], {
+	  	var circle2 = L.marker([value.country_from.lat, value.country_from.lon], {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_from'),
 	    	data: value
 	  	}).addTo(myMap);
 
-	  	var pointA = new L.LatLng(value.latitude, value.longitude);
-		var pointB = new L.LatLng(value.country_from_latitude, value.country_from_longitude);
-		var pointList = [pointA, pointB];
+	  	if(show_lines){
+	  		var pointA = new L.LatLng(value.country_to.lat, value.country_to.lon);
+			var pointB = new L.LatLng(value.country_from.lat, value.country_from.lon);
+			var pointList = [pointA, pointB];
 
-		var firstpolyline = new L.Polyline(pointList, {
-		    color: 'red',
-		    weight: 3,
-		    opacity: 0.5,
-		    smoothFactor: 1
-		});
-		firstpolyline.addTo(myMap);
-		myMap.panTo([value.latitude, value.longitude]);
+			var firstpolyline = new L.Polyline(pointList, {
+			    color: 'red',
+			    weight: 3,
+			    opacity: 0.5,
+			    smoothFactor: 1
+			});
+			firstpolyline.addTo(myMap);
+			myMap.panTo([value.country_to.lat, value.country_to.lon]);
 
-		var arrow = L.polyline([ 
-			[value.country_from_latitude, value.country_from_longitude],
-			[value.latitude, value.longitude]
-		], {}).addTo(myMap);
-	    var arrowHead = L.polylineDecorator(arrow, {
-	        patterns: [
-	            {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {stroke: true}})}
-	        ]
-	    }).addTo(myMap);
+			var arrow = L.polyline([ 
+				[value.country_from.lat, value.country_from.lon],
+				[value.country_to.lat, value.country_to.lon]
+			], {}).addTo(myMap);
+		    var arrowHead = L.polylineDecorator(arrow, {
+		        patterns: [
+		            {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {stroke: true}})}
+		        ]
+		    }).addTo(myMap);
+
+		    showDetails(arrivals);
+	  	}
+	  	
 	});
 
-	showDetails(arrivals);
+	
 	
 	$('.loader').hide();
 // Set the view to where some of the circles are drawn.
@@ -271,15 +281,38 @@ function getSingleArrivalMarker(arrival, to_or_from_country) {
 function showDetails(arrivals) {
 
 	var destination_details = '';
-	if(arrivals[0].country === arrivals[1].country){
+	if(arrivals[0].country_id === arrivals[1].country_id){
+
+		var total_migrants = 0;
 
 		$('.arrivals-layers').hide();
 		$('.details-layers').show();
 
-		$('.destination-country').html(arrivals[0].country);
 		$.each( arrivals, function( key, value ) {
-			destination_details += '<p>' + value.country_from + ' --- ' + value.percentage +'</p>'
+			total_migrants = total_migrants + value.value;
+			destination_details += '<tr><td>' + value.country_from.iso3 + '</td><td>' + value.value + '</td><td>' + value.percentage +'%</td></tr>'
 		})
+
+		$('.destination-country').html(arrivals[0].country_to.name);
+		$('.destination-label').html('country of migration destination');
+		$('.origin-label').html('country of origin');
+		$('.total-migrants').html(total_migrants);
+		$('.destination-details').html(destination_details);
+	}else{
+		var total_migrants = 0;
+
+		$('.arrivals-layers').hide();
+		$('.details-layers').show();
+
+		$.each( arrivals, function( key, value ) {
+			total_migrants = total_migrants + value.value;
+			destination_details += '<tr><td>' + value.country_to.iso3 + '</td><td>' + value.value + '</td><td>' +value.percentage +'%</td></tr>'
+		})
+
+		$('.destination-country').html(arrivals[0].country_from.name);
+		$('.destination-label').html('country of migration origin');
+		$('.origin-label').html('country of migration');
+		$('.total-migrants').html(total_migrants);
 		$('.destination-details').html(destination_details);
 	}
 }
@@ -479,10 +512,10 @@ function showIncidentGraph(incidents){
 	Highcharts.chart('incidents-graph-container', {
 	    chart: {
 	        type: 'column',
-	        height: 1000
+	        height: 500
 	    },
 	    title: {
-	        text: 'Number Of Incidents'
+	        text: 'Year Wise Incident Number &amp; Its Cause'
 	    },
 	    xAxis: {
 	        categories: ['2014', '2015', '2016', '2017', '2018']
@@ -517,7 +550,7 @@ function showRegionalIncidentGraph(regional_data) {
 	        type: 'pie'
 	    },
 	    title: {
-	        text: 'Regional Incidents'
+	        text: 'Number of Incidents in the Region'
 	    },
 	    tooltip: {
 	        pointFormat: '{series.name}: <b>{point.y} : {point.percentage:.1f}%</b>'
