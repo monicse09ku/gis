@@ -597,7 +597,7 @@ function showArrivalsDestinationGraph(countries, data) {
 	        height: 600
 	    },
 	    title: {
-	        text: 'Migration Destination'
+	        text: 'Migration Destination By Country'
 	    },
 
 	    /*subtitle: {
@@ -717,7 +717,7 @@ function showRegionalArrivalsDestinationGraph(countries, data) {
 	        height: 600
 	    },
 	    title: {
-	        text: 'Migration Destination'
+	        text: 'Migration Destination By Regions'
 	    },
 
 	    /*subtitle: {
