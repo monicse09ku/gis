@@ -166,6 +166,46 @@ function arrivalsCircleClick(e) {
     });
 }
 
+function arrivalsDestinationCircleClick(e) {
+	$('.loader').show();
+    var clickedCircle = e.target;
+	var url = base_url + '/get-single-arrival';
+
+	$.ajax({
+       	type:'POST',
+       	url:url,
+       	data:{
+       		country:clickedCircle.options.data.country_to.name, 
+       		total_arrival: 1,
+       		year:$('.year').val()
+       	},
+       	success:function(data){
+          	var single_arrivals = JSON.parse(data);
+			generateSingleArrivalsMap(single_arrivals.arrivals, true);
+       	}
+    });
+}
+
+function arrivalsOriginCircleClick(e) {
+	$('.loader').show();
+    var clickedCircle = e.target;
+	var url = base_url + '/get-single-arrival';
+
+	$.ajax({
+       	type:'POST',
+       	url:url,
+       	data:{
+       		country:clickedCircle.options.data.country_from.name, 
+       		total_arrival: -1,
+       		year:$('.year').val()
+       	},
+       	success:function(data){
+          	var single_arrivals = JSON.parse(data);
+			generateSingleArrivalsMap(single_arrivals.arrivals, true);
+       	}
+    });
+}
+
 function refreshArrivals() {
 	$('.loader').show();
 	var show_lines = true;
@@ -209,13 +249,13 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_to'),
 	    	data: value
-	  	}).addTo(myMap);
+	  	}).addTo(myMap).on("click", arrivalsDestinationCircleClick);
 
 	  	var circle2 = L.marker([value.country_from.lat, value.country_from.lon], {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_from'),
 	    	data: value
-	  	}).addTo(myMap);
+	  	}).addTo(myMap).on("click", arrivalsOriginCircleClick);
 
 	  	if(show_lines){
 	  		var pointA = new L.LatLng(value.country_to.lat, value.country_to.lon);
@@ -255,12 +295,30 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 
 function getSingleArrivalMarker(arrival, to_or_from_country) {
 	//console.log('arrival');console.log(arrival);return;
+	var icon_size = 0;
+	var arrival = Math.abs(arrival.total);
+
+	if(arrival == 0){
+		icon_size = [0, 0];
+	}else if(arrival > 0 && arrival < 1000){
+		icon_size = [5, 5];
+	}else if(arrival >= 1000 && arrival < 2000){
+		icon_size = [9, 9];
+	}else if(arrival >= 2000 && arrival < 4000){
+		icon_size = [13, 13];
+	}else if(arrival >= 4000 && arrival < 8000){
+		icon_size = [17, 17];
+	}else if(arrival >= 8000 && arrival < 12000){
+		icon_size = [21, 21];
+	}else if(arrival >= 12000 && arrival < 15000){
+		icon_size = [25, 25];
+	}else{
+		icon_size = [30, 30];
+	}
 	
 	if(to_or_from_country == 'country_to'){
-		var icon_size = [15, 15];
 		var image = 'circular-shape-green64.png';
 	}else{
-		var icon_size = [15, 15];
 		var image = 'circular-shape-blue64.png';
 	}
 
@@ -717,7 +775,7 @@ function showRegionalArrivalsDestinationGraph(countries, data) {
 	        height: 600
 	    },
 	    title: {
-	        text: 'Migration Destination By Regions'
+	        text: 'Migration Origin by Region'
 	    },
 
 	    /*subtitle: {
