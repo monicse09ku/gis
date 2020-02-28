@@ -491,15 +491,27 @@ function showGraphs(argument) {
 	$.ajax({
        	type:'POST',
        	url:url,
-       	data:{
-       		month:$('.month').val(),
-       		year:$('.year').val()
-       	},
        	success:function(data){
           	var incidents = JSON.parse(data);
           	
 			showIncidentGraph(incidents.incidents);
 			showRegionalIncidentGraph(incidents.regional_data);
+			showArrivalsDestinationGraph();
+       	}
+    })
+
+
+    var url = base_url + '/arrivals-graph-data';
+
+	$.ajax({
+       	type:'POST',
+       	url:url,
+       	success:function(data){
+          	var arrivals = JSON.parse(data);
+          	
+			showArrivalsDestinationGraph(arrivals.countries, arrivals.arrivals);
+			showOriginsDestinationGraph(arrivals.origin_countries, arrivals.origins);
+			showRegionalArrivalsDestinationGraph(arrivals.regions, arrivals.region_arrivals);
        	}
     })
 
@@ -541,7 +553,7 @@ function showIncidentGraph(incidents){
 }
 
 function showRegionalIncidentGraph(regional_data) {
-	console.log(regional_data);
+
 	Highcharts.chart('regional-graph-container', {
 	    chart: {
 	        plotBackgroundColor: null,
@@ -577,3 +589,184 @@ function showRegionalIncidentGraph(regional_data) {
 	    }]
 	});
 }
+
+function showArrivalsDestinationGraph(countries, data) {
+
+	Highcharts.chart('arrival-graph-container', {
+		chart: {
+	        height: 600
+	    },
+	    title: {
+	        text: 'Migration Destination'
+	    },
+
+	    /*subtitle: {
+	        text: 'Source: thesolarfoundation.com'
+	    },*/
+
+	    yAxis: {
+	        title: {
+	            text: 'Number of Migrants'
+	        }
+	    },
+	    xAxis: {
+	    	categories: countries,
+	        title: {
+	            text: 'Destination Countries'
+	        }
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle'
+	    },
+
+	    plotOptions: {
+	        /*series: {
+	            label: {
+	                connectorAllowed: false
+	            },
+	            pointStart: 2010
+	        }*/
+	    },
+
+	    series: data,
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 500
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});// body...
+}
+
+function showOriginsDestinationGraph(countries, data) {
+
+	Highcharts.chart('origin-graph-container', {
+		chart: {
+	        height: 600
+	    },
+	    title: {
+	        text: 'Migration Origins'
+	    },
+
+	    /*subtitle: {
+	        text: 'Source: thesolarfoundation.com'
+	    },*/
+
+	    yAxis: {
+	        title: {
+	            text: 'Number of Migrants'
+	        }
+	    },
+	    xAxis: {
+	    	categories: countries,
+	        title: {
+	            text: 'Origin Countries'
+	        }
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle'
+	    },
+
+	    plotOptions: {
+	        /*series: {
+	            label: {
+	                connectorAllowed: false
+	            },
+	            pointStart: 2010
+	        }*/
+	    },
+
+	    series: data,
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 500
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});// body...
+}
+
+function showRegionalArrivalsDestinationGraph(countries, data) {
+
+	Highcharts.chart('region-arrival-graph-container', {
+		chart: {
+	        height: 600
+	    },
+	    title: {
+	        text: 'Migration Destination'
+	    },
+
+	    /*subtitle: {
+	        text: 'Source: thesolarfoundation.com'
+	    },*/
+
+	    yAxis: {
+	        title: {
+	            text: 'Number of Migrants'
+	        }
+	    },
+	    xAxis: {
+	    	categories: countries,
+	        title: {
+	            text: 'Regions'
+	        }
+	    },
+	    legend: {
+	        layout: 'vertical',
+	        align: 'right',
+	        verticalAlign: 'middle'
+	    },
+
+	    plotOptions: {
+	        /*series: {
+	            label: {
+	                connectorAllowed: false
+	            },
+	            pointStart: 2010
+	        }*/
+	    },
+
+	    series: data,
+
+	    responsive: {
+	        rules: [{
+	            condition: {
+	                maxWidth: 500
+	            },
+	            chartOptions: {
+	                legend: {
+	                    layout: 'horizontal',
+	                    align: 'center',
+	                    verticalAlign: 'bottom'
+	                }
+	            }
+	        }]
+	    }
+
+	});// body...
+}
+

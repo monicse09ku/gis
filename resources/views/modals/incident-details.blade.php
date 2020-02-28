@@ -2,7 +2,7 @@
 <div class="modal fade" id="incidentDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="border-bottom: none">
         <h5 class="modal-title" id="exampleModalLabel">Incident Details</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -19,11 +19,11 @@
               <td>Time</td>
               <td class="time"></td>
             </tr>
-            <tr>
+            <tr hidden="">
               <td>Number of Death</td>
               <td class="number_of_death"></td>
             </tr>
-            <tr>
+            <tr hidden="">
               <td>Minimum Estimated Number of Missing</td>
               <td class="minimum_estimated_number_of_missing"></td>
             </tr>
@@ -31,7 +31,7 @@
               <td>Total Dead and Missing</td>
               <td class="total_dead_and_missing"></td>
             </tr>
-            <tr>
+            <tr hidden="">
               <td>Number of Survivors</td>
               <td class="number_of_survivors"></td>
             </tr>
@@ -39,7 +39,7 @@
               <td>Cause of Death</td>
               <td class="cause_of_death"></td>
             </tr>
-            <tr>
+            <tr hidden="">
               <td>Location Description</td>
               <td class="location_description"></td>
             </tr>
