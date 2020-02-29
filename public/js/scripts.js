@@ -554,7 +554,6 @@ function showGraphs(argument) {
           	
 			showIncidentGraph(incidents.incidents);
 			showRegionalIncidentGraph(incidents.regional_data);
-			showArrivalsDestinationGraph();
        	}
     })
 
