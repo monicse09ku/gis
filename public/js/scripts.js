@@ -494,29 +494,22 @@ function incidentCircleClick(e) {
 
 function getIcon(total_dead_and_missing) {
 	var icon_size = 0;
-	var image = '1.png';
+	var image = 'circular-shape-red64.png';
 
 	if(total_dead_and_missing == 0){
 		icon_size = [0, 0];
-		image = '1.png';
 	}else if(total_dead_and_missing > 0 && total_dead_and_missing < 100){
-		icon_size = [40, 40];
-		image = '2.png';
+		icon_size = [9, 9];
 	}else if(total_dead_and_missing >= 100 && total_dead_and_missing < 200){
-		icon_size = [45, 45];
-		image = '3.png';
+		icon_size = [15, 15];
 	}else if(total_dead_and_missing >= 200 && total_dead_and_missing < 300){
-		icon_size = [50, 50];
-		image = '4.png';
+		icon_size = [22, 22];
 	}else if(total_dead_and_missing >= 300 && total_dead_and_missing < 400){
-		icon_size = [55, 55];
-		image = '5.png';
+		icon_size = [30, 30];
 	}else if(total_dead_and_missing >= 400 && total_dead_and_missing < 500){
-		icon_size = [60, 60];
-		image = '6.png';
+		icon_size = [43, 43];
 	}else{
-		icon_size = [80, 80];
-		image = '7.png';
+		icon_size = [60, 60];
 	}
 
 	var greenIcon = L.icon({
