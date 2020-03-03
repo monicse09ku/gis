@@ -97,7 +97,11 @@ function generateArrivalsMap(arrivals) {
 	    	color: 'red',
 	    	icon: getArrivalMarker(value.total_arrival),
 	    	data: value
-	  	}).addTo(myMap).on("click", arrivalsCircleClick);
+	  	}).bindPopup(value.country).addTo(myMap).on("click", arrivalsCircleClick);
+
+	  	circle.on('mouseover',function(ev) {
+		  	circle.openPopup();
+		});
 	});
 
 	$('.loader').hide();
@@ -265,13 +269,19 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_to'),
 	    	data: value
-	  	}).addTo(myMap).on("click", arrivalsDestinationCircleClick);
+	  	}).bindPopup(value.country_to.name).addTo(myMap).on("click", arrivalsDestinationCircleClick);
+	  	circle1.on('mouseover',function(ev) {
+		 	 circle1.openPopup();
+		});
 
 	  	var circle2 = L.marker([value.country_from.lat, value.country_from.lon], {
 	    	color: 'red',
 	    	icon: getSingleArrivalMarker(value, 'country_from'),
 	    	data: value
-	  	}).addTo(myMap).on("click", arrivalsOriginCircleClick);
+	  	}).bindPopup(value.country_from.name).addTo(myMap).on("click", arrivalsOriginCircleClick);
+	  	circle2.on('mouseover',function(ev) {
+		 	 circle2.openPopup();
+		});
 
 	  	if(show_lines){
 	  		var pointA = new L.LatLng(value.country_to.lat, value.country_to.lon);
@@ -310,7 +320,6 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 }
 
 function getSingleArrivalMarker(arrival, to_or_from_country) {
-	//console.log('arrival');console.log(arrival);return;
 	var icon_size = 0;
 	var arrival = Math.abs(arrival.total);
 
@@ -477,7 +486,6 @@ function generateIncidentsMap(incidents) {
 
 function incidentCircleClick(e) {
     var clickedCircle = e.target;
-	console.log(clickedCircle.options)
   	// do something, like:
   	//clickedCircle.bindPopup("some content").openPopup();
   	$('.region').html(clickedCircle.options.data.region);
