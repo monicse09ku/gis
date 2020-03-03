@@ -114,7 +114,7 @@ function getArrivalMarker(total_arivals) {
 	
 	var arrival = Math.abs(total_arivals);
 
-	if(arrival == 0){
+	/*if(arrival == 0){
 		icon_size = [0, 0];
 	}else if(arrival > 0 && arrival < 1000){
 		icon_size = [5, 5];
@@ -130,6 +130,22 @@ function getArrivalMarker(total_arivals) {
 		icon_size = [25, 25];
 	}else{
 		icon_size = [30, 30];
+	}*/
+
+	if(arrival == 0){
+		icon_size = [0, 0];
+	}else if(arrival > 0 && arrival < 5000){
+		icon_size = [9, 9];
+	}else if(arrival >= 5001 && arrival < 10000){
+		icon_size = [15, 15];
+	}else if(arrival >= 10001 && arrival < 15000){
+		icon_size = [22, 22];
+	}else if(arrival >= 15001 && arrival < 25000){
+		icon_size = [30, 30];
+	}else if(arrival >= 25001 && arrival < 30000){
+		icon_size = [43, 43];
+	}else{
+		icon_size = [60, 60];
 	}
 
 	var greenIcon = L.icon({
@@ -554,7 +570,6 @@ function showGraphs(argument) {
           	
 			showIncidentGraph(incidents.incidents);
 			showRegionalIncidentGraph(incidents.regional_data);
-			showArrivalsDestinationGraph();
        	}
     })
 
