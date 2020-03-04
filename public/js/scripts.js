@@ -476,7 +476,18 @@ function generateIncidentsMap(incidents) {
 			color: 'red',
 			icon: getIcon(coord.total_dead_and_missing),
 			data: coord
-		}).addTo(myMap).on("click", incidentCircleClick);
+		//}).addTo(myMap).on("click", incidentCircleClick);
+		}).bindPopup(
+		'<b>Region: </b>' + coord.region + '</br>' + 
+		'<b>Time: </b>' + coord.month + ', ' + coord.year + '</br>' + 
+		'<b>Total Dead and Missing: </b>' + coord.total_dead_and_missing + '</br>' + 
+		'<b>Cause of Death: </b>' + coord.cause_of_death 
+		).addTo(myMap);
+
+		circle.on('mouseover',function(ev) {
+		 	 circle.openPopup();
+		});
+
 	});
 	$('.loader').hide();
 // Set the view to where some of the circles are drawn.
