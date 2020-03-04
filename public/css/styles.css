@@ -81,3 +81,11 @@ h4{
   font-size: 12px;
   font-weight: bold;
 }
+
+.modal-body table{
+  margin-bottom: 0 !important;
+}
+
+.modal-body table td{
+  padding: .25rem !important;
+}
