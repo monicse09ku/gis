@@ -1,16 +1,16 @@
 <!-- Modal -->
 <div class="modal fade" id="incidentDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="border-bottom: none">
-        <h5 class="modal-title" id="exampleModalLabel">Incident Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal-content" style="max-width: 300px">
+      <div class="modal-header" style="border-bottom: none; font-size: 14px; padding-bottom: 0" >
+        <p class="modal-title" id="exampleModalLabel">Incident Details</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: red">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <table class="table">
-          <tbody>
+          <tbody style="font-size: 12px">
             <tr>
               <td>Region</td>
               <td class="region"></td>
@@ -47,10 +47,10 @@
         </table>
 
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
     </div>
   </div>
 </div>
