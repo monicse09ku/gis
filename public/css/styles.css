@@ -89,3 +89,20 @@ h4{
 .modal-body table td{
   padding: .25rem !important;
 }
+.legends-sidebar{
+  width: 25%;
+  height: 70vh;
+  overflow-y: scroll;
+  position: absolute;
+  top: 64px;
+  right: 30px;
+  z-index: 9999;
+  background: #fff;
+  padding: 5px 15px;
+}
+
+.toggle-sidebar-button{
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}

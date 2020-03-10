@@ -31,8 +31,19 @@ $( document ).ready(function() {
     showArrivals();
 });
 
+function toggleSidebar() {
+	if($('.legends-sidebar').is(":hidden")){
+        $('.legends-sidebar').show();
+    }else{
+        $('.legends-sidebar').hide();
+    }
+}
+
 function showArrivals() {
 	$('.loader').show();
+
+	$('.legends-sidebar').show();
+	$('.toggle-sidebar-button').show();
 
 	$('#map_container').show();
 	$('#graph_container').hide();
@@ -70,7 +81,7 @@ function showArrivals() {
 }
 
 function generateArrivalsMap(arrivals) {
-	var myMap = L.map('mapid').setView([47.00, 9.00], 4);
+	var myMap = L.map('mapid').setView([40.00, 40.00], 4);
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	  maxZoom: 13,
 	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -405,6 +416,9 @@ function showDetails(arrivals) {
 function showIncidents() {
 	$('.loader').show();
 
+	$('.legends-sidebar').show();
+	$('.toggle-sidebar-button').show();
+
 	$('#map_container').show();
 	$('#graph_container').hide();
 	
@@ -462,7 +476,7 @@ function refreshIncidents() {
 
 function generateIncidentsMap(incidents) {
 	
-	var myMap = L.map('mapid').setView([47.00, 9.00], 4);
+	var myMap = L.map('mapid').setView([40.00, 10.00], 5);
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	  maxZoom: 13,
 	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -552,6 +566,9 @@ function getIcon(total_dead_and_missing) {
 
 function showGraphs(argument) {
 	$('.loader').show();
+
+	$('.legends-sidebar').hide();
+	$('.toggle-sidebar-button').hide();
 
 	$('#map_container').hide();
 	$('#graph_container').show();

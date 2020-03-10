@@ -7,7 +7,8 @@
 @include('modals.incident-details')
 
 @include('layouts.partials.sidebar')
-<div class="col-md-9" style="float: left;">
+
+<div class="col-md-12" style="float: left;">
 	<div class="col-md-6" style="float: left;">
 		<nav class="navbar navbar-expand-md">
 		    <a href="#" class="navbar-brand btn-secondary tab-menu btn bg-color" onclick="showArrivals()">Arrival</a>
@@ -89,8 +90,13 @@
 		          	<i class="fas fa-sync-alt"></i>
 		        </a>
 		    </a>
+		    
 		</nav>
 	</div>
+
+	<a href="#" class="btn btn-warning toggle-sidebar-button" onclick="toggleSidebar()">
+    	<i class="fas fa-bars"></i>
+    </a>
 
 	<div class="loader"></div>
 	
