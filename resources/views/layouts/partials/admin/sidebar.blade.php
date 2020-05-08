@@ -26,6 +26,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>      
+        <li><a href="{{ url('/') }}"><i class="fa fa-wpexplorer"></i> <span>HomePage</span></a></li>
         <li @if( url()->current() == url('/home')) class="active" @endif><a href="{{ url('/home') }}"><i class="fa fa-snowflake-o"></i> <span>Dashboard</span></a></li>
         <li @if( url()->current() == url('/arrivals')) class="active" @endif><a href="{{ url('/arrivals') }}"><i class="fa fa-map-marker"></i> <span>Arrivals</span></a></li>
         <li @if( url()->current() == url('/incidents')) class="active" @endif><a href="{{ url('/incidents') }}"><i class="fa fa-sitemap"></i> <span>Incidents</span></a></li>

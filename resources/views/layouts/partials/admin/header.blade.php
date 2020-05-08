@@ -34,9 +34,9 @@
               
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="{{ url('profile') }}" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
                   <a href="{{ url('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>

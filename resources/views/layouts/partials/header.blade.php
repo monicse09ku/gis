@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #52A5A0 !important;">
-    <a href="#" class="navbar-brand">GIS</a>
+    <!-- <a href="#" class="navbar-brand">GIS</a> -->
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,6 +9,12 @@
             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
             <a href="{{ url('/about') }}" class="nav-item nav-link active">About</a>
             <a href="{{ url('/contact') }}" class="nav-item nav-link active">Contact</a>
+            @guest
+            <a href="{{ url('/login') }}" class="nav-item nav-link active">Login</a>
+            @endguest
+            @auth
+            <a href="{{ url('/home') }}" class="nav-item nav-link active">Admin Area</a>
+            @endauth
             <!-- <a href="#" class="nav-item nav-link">Profile</a>
             <a href="#" class="nav-item nav-link">Messages</a>
             <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
