@@ -32,3 +32,17 @@ Route::post('get-single-arrival', 'ArrivalController@getSingleArrival')->name('g
 Route::post('refresh-arrival', 'ArrivalController@refreshArrival')->name('refreshArrival');
 Route::post('arrivals-graph-data', 'ArrivalController@arrivalsGraphData')->name('arrivalsGraphData');
 
+
+Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::get('/incidents', 'Incident\IncidentController@index');
+	Route::get('/arrivals', 'Arrival\ArrivalController@index');
+
+});
