@@ -339,7 +339,7 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 function getSingleArrivalMarker(arrival, to_or_from_country) {
 	var icon_size = 0;
 	var arrival = Math.abs(arrival.value);
-console.log(arrival);
+
 	if(arrival == 0){
 		icon_size = [0, 0];
 	}else if(arrival > 0 && arrival < 5000){
