@@ -108,7 +108,7 @@
 		<div id="incidents-graph-container" style="float: left;width: 70%"></div>
 		<div id="regional-graph-container" style="float: left;width: 30%"></div>
 		<div id="arrival-graph-container" style="float: left;width: 100%"></div>
-		<div id="origin-graph-container" style="float: left;width: 100%"></div>
+		<!-- <div id="origin-graph-container" style="float: left;width: 100%"></div> -->
 		<div id="region-arrival-graph-container" style="float: left;width: 100%"></div>
 	</div>
 	

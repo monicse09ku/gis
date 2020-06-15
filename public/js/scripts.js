@@ -616,7 +616,7 @@ function showGraphs(argument) {
           	var arrivals = JSON.parse(data);
           	
 			showArrivalsDestinationGraph(arrivals.countries, arrivals.arrivals);
-			showOriginsDestinationGraph(arrivals.origin_countries, arrivals.origins);
+			//showOriginsDestinationGraph(arrivals.origin_countries, arrivals.origins);
 			showRegionalArrivalsDestinationGraph(arrivals.regions, arrivals.region_arrivals);
        	}
     })
