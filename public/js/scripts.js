@@ -338,24 +338,22 @@ function generateSingleArrivalsMap(arrivals, show_lines = true) {
 
 function getSingleArrivalMarker(arrival, to_or_from_country) {
 	var icon_size = 0;
-	var arrival = Math.abs(arrival.total);
-
+	var arrival = Math.abs(arrival.value);
+console.log(arrival);
 	if(arrival == 0){
 		icon_size = [0, 0];
-	}else if(arrival > 0 && arrival < 1000){
-		icon_size = [5, 5];
-	}else if(arrival >= 1000 && arrival < 2000){
+	}else if(arrival > 0 && arrival < 5000){
 		icon_size = [9, 9];
-	}else if(arrival >= 2000 && arrival < 4000){
-		icon_size = [13, 13];
-	}else if(arrival >= 4000 && arrival < 8000){
-		icon_size = [17, 17];
-	}else if(arrival >= 8000 && arrival < 12000){
-		icon_size = [21, 21];
-	}else if(arrival >= 12000 && arrival < 15000){
-		icon_size = [25, 25];
-	}else{
+	}else if(arrival >= 5001 && arrival < 10000){
+		icon_size = [15, 15];
+	}else if(arrival >= 10001 && arrival < 15000){
+		icon_size = [22, 22];
+	}else if(arrival >= 15001 && arrival < 25000){
 		icon_size = [30, 30];
+	}else if(arrival >= 25001 && arrival < 30000){
+		icon_size = [43, 43];
+	}else{
+		icon_size = [60, 60];
 	}
 	
 	if(to_or_from_country == 'country_to'){
