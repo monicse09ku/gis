@@ -2,7 +2,7 @@
 	<h4>LEGENDS</h4>
 	<div>
 		<div class="col-md-12">
-			<img src="{{ url('/images/2.png') }}" height="50" width="50">0 - 99 VICTIMS
+			<img src="{{ url('/images/2.png') }}" height="50" width="50"> > 100 
 		</div>
 		<div class="col-md-12">
 			<img src="{{ url('/images/3.png') }}" height="50" width="50">100 - 199 VICTIMS

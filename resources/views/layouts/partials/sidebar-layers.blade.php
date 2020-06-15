@@ -7,37 +7,37 @@
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="9" width="9">
 			</div> 
-			<div class="col-md-8" style="float: left;">0 - 99 VICTIMS</div>
+			<div class="col-md-8" style="float: left;"> < 100 </div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="15" width="15">
 			</div> 
-			<div class="col-md-8" style="float: left;">100 - 199 VICTIMS</div>
+			<div class="col-md-8" style="float: left;">101 - 200</div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="22" width="22">
 			</div> 
-			<div class="col-md-8" style="float: left;">200 - 299 VICTIMS</div>
+			<div class="col-md-8" style="float: left;">201 - 300</div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="30" width="30">
 			</div> 
-			<div class="col-md-8" style="float: left;">300 - 399 VICTIMS</div>
+			<div class="col-md-8" style="float: left;">301 - 400 </div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="43" width="43">
 			</div> 
-			<div class="col-md-8" style="float: left; margin-top: 9px;">400 - 499 VICTIMS</div>
+			<div class="col-md-8" style="float: left; margin-top: 9px;">401 - 500 </div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-red64.png') }}" height="60" width="60">
 			</div> 
-			<div class="col-md-8" style="float: left; margin-top: 16px;">> 500 VICTIMS</div>
+			<div class="col-md-8" style="float: left; margin-top: 16px;"> > 500 </div>
 		</div>
 	</div>
 
@@ -48,7 +48,7 @@
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-green64.png') }}" height="9" width="9">
 			</div> 
-			<div class="col-md-8" style="float: left;"><5000</div>
+			<div class="col-md-8" style="float: left;">  < 5000</div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
@@ -78,7 +78,7 @@
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-green64.png') }}" height="60" width="60">
 			</div> 
-			<div class="col-md-8" style="float: left; margin-top: 16px;">>30000</div>
+			<div class="col-md-8" style="float: left; margin-top: 16px;"> > 30000</div>
 		</div>
 <!-- Starts New -->
 		<p style="font-weight: bold;margin-top: 20px">Migration Origin Country</p>
@@ -86,7 +86,7 @@
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-blue64.png') }}" height="9" width="9">
 			</div> 
-			<div class="col-md-8" style="float: left;"><5000</div>
+			<div class="col-md-8" style="float: left;">< 5000</div>
 		</div>
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-4" style="float: left; text-align: center">
@@ -116,7 +116,7 @@
 			<div class="col-md-4" style="float: left; text-align: center">
 				<img src="{{ asset('/images/circular-shape-blue64.png') }}" height="60" width="60">
 			</div> 
-			<div class="col-md-8" style="float: left; margin-top: 16px;">>30000</div>
+			<div class="col-md-8" style="float: left; margin-top: 16px;">> 30000</div>
 		</div>
 	</div>
 
