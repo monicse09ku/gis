@@ -81,6 +81,7 @@ function showArrivals() {
 }
 
 function generateArrivalsMap(arrivals) {
+	document.getElementById('map_container').innerHTML = "<div id='mapid'></div>";
 	var myMap = L.map('mapid').setView([40.00, 40.00], 4);
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	  maxZoom: 13,
@@ -257,7 +258,12 @@ function refreshArrivals() {
        	},
        	success:function(data){
           	var single_arrivals = JSON.parse(data);
-			generateSingleArrivalsMap(single_arrivals.arrivals, show_lines);
+          	if($('.country').val() === ''){
+				generateArrivalsMap(single_arrivals.arrivals);
+			}else{
+				generateSingleArrivalsMap(single_arrivals.arrivals, show_lines);
+			}
+			
        	}
     });
 }
